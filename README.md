@@ -17,11 +17,19 @@ Server
  
 Nodes
 - Runs playwright in a nested container and a simple api with auth for the server to call. 
+
 - Has API middleman of server and playwright websockets thing
+
 - Podman nested containers
+
 - Bastion
+
 -- Surrounding container, contains containers with playwright image
+
 -- Contains API that the Server calls.
+
 -- Playwright image(Name Very WIP)
+
 --- Must be as hardened as possible as a priority.
+
 --- Bastion connects over websockets. 

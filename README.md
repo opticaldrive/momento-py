@@ -9,6 +9,7 @@ tl;dr you give us url we give you screenshot.
 
 
 Terminology/Setup:
+WIP, doesn't include migrations to firecracker or gvisor 
 Items with "*", naming WIP. Actually everything naming WIP
 Server
 - Delegates screenshot tasks to Nodes over a http api or something
@@ -20,19 +21,11 @@ Server
  
 Nodes
 - Runs playwright in a nested container and a simple api with auth for the server to call. 
-
 - Has API middleman of server and playwright websockets thing
-
 - Podman nested containers
-
 - Bastion
-
--- Surrounding container, contains containers with playwright image
-
--- Contains API that the Server calls.
-
--- Playwright image(Name Very WIP)
-
---- Must be as hardened as possible as a priority.
-
---- Bastion connects over websockets. 
+ - Surrounding container, contains containers with playwright image
+ - Contains API that the Server calls.
+ - Playwright image(Name Very WIP)
+ - Must be as hardened as possible as a priority.
+ - Bastion connects over websockets. 

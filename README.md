@@ -3,7 +3,10 @@ A screenshot service API.
 tl;dr you give us url we give you screenshot.
 (appreciated if you hack us or not)
 
-Stage: Bastion development
+
+
+
+
 
 Terminology/Setup:
 Items with "*", naming WIP. Actually everything naming WIP

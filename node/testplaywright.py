@@ -1,17 +1,4 @@
 
-# from playwright.sync_api import sync_playwright
-
-# with sync_playwright() as p:
-#     browser = p.webkit.launch_server()
-
-#     browser = p.chromium.launch_server()
-#     context = browser.new_context()
-#     page = context.new_page()
-#     page.goto("https://playwright.dev/")
-#     page.screenshot(path="example.png")
-#     context.close()
-#     browser.close()
-
 
 
 
@@ -19,7 +6,7 @@ from playwright.async_api import async_playwright
 
 async def return_screenshot(url:str):
     async with async_playwright() as p:
-        browser = await p.webkit.launch()
+        browser = await p.webkit.connect(ws_endpoint="ws://localhost:33200")
         context = await browser.new_context()
         page = await context.new_page()
 
@@ -36,7 +23,7 @@ async def save_image(image_data, filepath:str):
 
 async def main():
     image =await return_screenshot("https://ip.me")
-    await save_image(image, "ip.png")
+    await save_image(image, "screenshots/ip2.png")
 
 import asyncio
 asyncio.run(main())

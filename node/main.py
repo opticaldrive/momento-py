@@ -1,7 +1,7 @@
 nodes = [
-    {"ws_endpoint":"ws://localhost:3301/", "tasks":[]},
-    {"ws_endpoint":"ws://localhost:3302/", "tasks":[]},
-    {"ws_endpoint":"ws://localhost:3303/", "tasks":[]},
+    {"ws_endpoint":"ws://localhost:3301/", "tasks":[], "browser": None},
+    {"ws_endpoint":"ws://localhost:3302/", "tasks":[], "browser": None},
+    # {"ws_endpoint":"ws://localhost:3303/", "tasks":[]},
 ]
 
 # connect to all nodes

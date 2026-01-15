@@ -10,6 +10,36 @@ def pull_playwright(client: podman.PodmanClient):
     client.images.pull(repository="mcr.microsoft.com/playwright")
 
 
+def new_lightpanda_container(
+    client: podman.PodmanClient,
+    host_port: int = 3300,
+    name_prefix: str = "lightpanda-server",
+):
+    # $ docker run -d --name lightpanda -p 9222:9222 lightpanda/browser:nightly serve --host 0.0.0.0 --port 9222 --log_level debug
+    lightpanda_container = client.containers.run(
+        image="lightpanda/browser:nightly",
+        name=f"{name_prefix}-p{host_port}",
+        detach=True,
+        ports={"9222/tcp": host_port},
+        init=True,
+        # ipc_mode="host",
+        # userns_mode="keep-id",
+        # user="pwuser",
+        # working_dir="/home/pwuser",
+        # security_opt=[f"seccomp={seccomp_profile}"],
+        # command='/bin/sh -c "npx -y playwright@1.57.0 run-server --port 3000 --host 0.0.0.0"'
+        command=[
+            "serve",
+            "--port",
+            "9222",
+            "--host",
+            "0.0.0.0",
+            "--log_level",
+            "debug",
+        ],
+    )
+
+
 def new_playwright_container(
     client: podman.PodmanClient, host_port: int = 3300, name: str = "playwright-server"
 ):
@@ -59,9 +89,10 @@ with podman.PodmanClient(base_url=socket_uri) as client:
         # STOP USING THE FOOTGUN
         # nuke_all_containers(client)
         pull_playwright(client)
-        for new_container_count in range(3):
+        for new_container_count in range(1):
             host_port = 3300 + new_container_count
-            new_playwright_container(client, host_port=host_port)
+            # new_playwright_container(client, host_port=host_port)
+            new_lightpanda_container(client, host_port=host_port)
 
         containers_list = client.containers.list(all=True)
         for container in containers_list:

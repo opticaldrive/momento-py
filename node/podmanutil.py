@@ -12,7 +12,7 @@ def pull_playwright(client: podman.PodmanClient):
 
 def new_lightpanda_container(
     client: podman.PodmanClient,
-    host_port: int = 3300,
+    host_port: int = 9222,
     name_prefix: str = "lightpanda-server",
 ):
     # $ docker run -d --name lightpanda -p 9222:9222 lightpanda/browser:nightly serve --host 0.0.0.0 --port 9222 --log_level debug

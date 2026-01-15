@@ -8,9 +8,6 @@ async def root():
     return {"message": "Hello World"}
 
 
-
 @app.get("/ping")
 async def ping():
     return "pong"
-
-
